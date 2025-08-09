@@ -677,121 +677,12 @@
         </div>
     </div>
 
+    <!-- Chargement du catalogue de produits depuis le dossier Catalogue -->
+    <script src="Catalogue/produits.js"></script>
+
     <script>
-        // Product data
-        const products = {
-            available: [
-                {
-                    id: 'av1',
-                    name: 'Smartphone Samsung Galaxy',
-                    price: 125000,
-                    image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=300&h=200&fit=crop',
-                    category: 'available'
-                },
-                {
-                    id: 'av2',
-                    name: 'Ordinateur Portable HP',
-                    price: 350000,
-                    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop',
-                    category: 'available'
-                },
-                {
-                    id: 'av3',
-                    name: 'Casque Audio Bluetooth',
-                    price: 45000,
-                    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop',
-                    category: 'available'
-                },
-                {
-                    id: 'av4',
-                    name: 'Montre Connectée',
-                    price: 75000,
-                    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=200&fit=crop',
-                    category: 'available'
-                },
-                {
-                    id: 'av5',
-                    name: 'Tablette iPad',
-                    price: 280000,
-                    image: 'https://images.unsplash.com/photo-1561154464-82e9adf32764?w=300&h=200&fit=crop',
-                    category: 'available'
-                }
-            ],
-            special: [
-                {
-                    id: 'sp1',
-                    name: 'Voiture BMW Série 3',
-                    price: 15000000,
-                    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=300&h=200&fit=crop',
-                    category: 'special'
-                },
-                {
-                    id: 'sp2',
-                    name: 'Machine Industrielle CNC',
-                    price: 8500000,
-                    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop',
-                    category: 'special'
-                },
-                {
-                    id: 'sp3',
-                    name: 'Générateur Électrique 50KW',
-                    price: 2800000,
-                    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=300&h=200&fit=crop',
-                    category: 'special'
-                },
-                {
-                    id: 'sp4',
-                    name: 'Équipement Médical Scanner',
-                    price: 25000000,
-                    image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=300&h=200&fit=crop',
-                    category: 'special'
-                },
-                {
-                    id: 'sp5',
-                    name: 'Système de Sécurité Complet',
-                    price: 1200000,
-                    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop',
-                    category: 'special'
-                }
-            ],
-            adult: [
-                {
-                    id: 'ad1',
-                    name: 'Guide Relationnel Moderne',
-                    price: 15000,
-                    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop',
-                    category: 'adult'
-                },
-                {
-                    id: 'ad2',
-                    name: 'Manuel de Psychologie Intime',
-                    price: 18000,
-                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop',
-                    category: 'adult'
-                },
-                {
-                    id: 'ad3',
-                    name: 'Collection Romans Érotiques',
-                    price: 25000,
-                    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop',
-                    category: 'adult'
-                },
-                {
-                    id: 'ad4',
-                    name: 'Guide Bien-être Adulte',
-                    price: 20000,
-                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop',
-                    category: 'adult'
-                },
-                {
-                    id: 'ad5',
-                    name: 'Encyclopédie Relations Modernes',
-                    price: 35000,
-                    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop',
-                    category: 'adult'
-                }
-            ]
-        };
+        // Utilisation des données du catalogue externe
+        const products = catalogueProduits;
 
         // Cart management
         let cart = JSON.parse(localStorage.getItem('diobshop_cart')) || [];
@@ -834,8 +725,8 @@
         // Render all products
         function renderProducts() {
             renderProductSection('available-products', products.available, 'available');
-            renderProductSection('special-order-products', products.special, 'special');
-            renderProductSection('adult-books', products.adult, 'adult');
+            renderProductSection('special-order-products', products.specialOrder, 'special');
+            renderProductSection('adult-books', products.adultBooks, 'adult');
         }
 
         // Render products for a specific section
