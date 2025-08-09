@@ -1,0 +1,78 @@
+Crée un fichier unique index.html (un seul fichier, avec HTML, CSS et JavaScript intégrés dans ce même fichier) pour un site web catalogue professionnel appelé DIOBSHOP, entièrement responsive (s'adapte à Android, iPhone, tablette et ordinateur).
+
+Structure du site :
+Mini-en-tête en haut avec un message de bienvenue professionnel.
+
+Trois rubriques principales :
+
+1. Articles disponibles
+Liste de produits avec image, nom, prix (en FCFA).
+
+Sous chaque article :
+
+Bouton "Ajouter au panier"
+
+Bouton "Passer à l'achat sur WhatsApp" avec logo WhatsApp.
+
+Le bouton "Passer à l'achat sur WhatsApp" doit envoyer directement le produit choisi vers un message WhatsApp pré-rempli avec tous les détails (nom, lien image, prix).
+
+2. Articles à avoir uniquement sous commande spéciale
+Message après le titre :
+
+Ces articles ne sont pas en stock. Pour toute commande spéciale, un acompte de 25% du montant total est requis pour confirmation et le montant total de la commande doit être au minimum 50 000 FCFA.
+
+Même présentation que la rubrique 1 (image, nom, prix, boutons).
+
+Boutons :
+
+"Ajouter au panier"
+
+"Commander sur WhatsApp" avec logo WhatsApp.
+
+3. Livres adultes (interdits aux moins de 18 ans)
+Message après le titre :
+
+ATTENTION : Il s'agit de livres numériques. L'acheteur recevra le produit dès que le paiement sera effectué.
+
+Même présentation (image, nom, prix, boutons).
+
+Boutons :
+
+"Ajouter au panier"
+
+"Commander sur WhatsApp"
+
+Message stratégique après la troisième rubrique :
+
+Remarque : Au-delà de ces articles à caractère typiquement érotique, vous pouvez commander chez nous tout type d'article (machine, voiture, etc.). Il suffit de nous envoyer les images des articles que vous souhaitez commander et nous vous proposerons nos prix et conditions.
+
+Fonctionnalités techniques :
+Panier interactif géré en JavaScript, stocké dans localStorage pour persistance.
+
+Bouton flottant "Voir le panier" toujours visible, même lors du scroll.
+
+Chaque article ajouté au panier doit générer un identifiant unique de panier et un lien de visualisation.
+
+Lorsque quelqu’un clique sur ce lien, il est redirigé vers ce panier spécifique.
+
+Lors de l'envoi vers WhatsApp :
+
+Si le panier contient des articles disponibles et des articles spéciaux, le message doit être séparé en deux sections avec détails (nom, lien image, prix, quantité).
+
+Inclure les images via leur lien dans le message.
+
+Données d'exemple :
+Utiliser 5 produits par rubrique avec images libres de droit (placer des liens d’images temporaires).
+
+Les prix doivent être affichés en FCFA.
+
+Tous les boutons WhatsApp doivent utiliser ce lien :
+https://wa.me/message/MDOD6SN7S6BSD1
+
+Contraintes :
+
+Un seul fichier HTML avec CSS dans <style> et JavaScript dans <script>.
+
+Code clair, commenté, facile à personnaliser.
+
+Design moderne, professionnel et responsive.
