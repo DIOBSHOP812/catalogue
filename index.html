@@ -946,7 +946,7 @@
             const product = findProduct(productId);
             if (!product) return;
 
-            const message = createWhatsAppMessage([{...product, quantity: 1}]);
+            const message = createWhatsAppMessage([{...product, quantity: 1}], productId);
             const whatsappUrl = `https://wa.me/message/MDOD6SN7S6BSD1?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
@@ -964,7 +964,7 @@
         }
 
         // Create WhatsApp message
-        function createWhatsAppMessage(items) {
+        function createWhatsAppMessage(items, productId = null) {
             const availableItems = items.filter(item => item.category === 'available');
             const specialItems = items.filter(item => item.category === 'special');
             const adultItems = items.filter(item => item.category === 'adult');
@@ -1019,6 +1019,14 @@
                 const totalSpecial = specialItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 const acompteTotal = totalSpecial * 0.25;
                 message += `💳 *Acompte total requis: ${formatPrice(acompteTotal)} FCFA*\n\n`;
+            }
+
+            // Ajout du lien direct vers le panier ou le produit
+            let siteUrl = window.location.origin + window.location.pathname;
+            if (productId) {
+                message += `🔗 Lien vers le produit: ${siteUrl}?productId=${productId}\n`;
+            } else {
+                message += `🔗 Lien vers le panier: ${siteUrl}?cartId=${cartId}\n`;
             }
 
             message += `📞 Merci de confirmer cette commande et de nous indiquer vos préférences de livraison.`;
