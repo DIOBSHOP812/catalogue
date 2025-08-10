@@ -666,7 +666,7 @@
                     <button class="btn btn-primary" onclick="shareCart()">
                         <i class="fas fa-share-alt"></i> Partager le Panier
                     </button>
-                    <button class="btn btn-whatsapp" onclick="sendCartToWhatsApp()">
+                    <button class="btn btn-whatsapp" type="button" onclick="sendCartToWhatsApp()">
                         <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
                     </button>
                     <button class="btn" style="background: #dc3545; color: white;" onclick="clearCart()">
@@ -758,7 +758,7 @@
                         <button class="btn btn-primary" onclick="addToCart('${product.id}')">
                             <i class="fas fa-cart-plus"></i> Ajouter au panier
                         </button>
-                        <button class="btn btn-whatsapp" onclick="buyDirectWhatsApp('${product.id}')">
+                        <button class="btn btn-whatsapp" type="button" onclick="buyDirectWhatsApp('${product.id}')">
                             <i class="fab fa-whatsapp"></i> ${whatsappButtonText}
                         </button>
                     </div>
