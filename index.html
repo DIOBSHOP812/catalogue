@@ -1021,8 +1021,8 @@
                 message += `💳 *Acompte total requis: ${formatPrice(acompteTotal)} FCFA*\n\n`;
             }
 
-            // Ajout du lien direct vers le panier ou le produit
-            let siteUrl = window.location.origin + window.location.pathname;
+            // Ajout du lien direct vers le panier ou le produit (URL publique)
+            let siteUrl = "https://diobshop812.github.io/catalogue/";
             if (productId) {
                 message += `🔗 Lien vers le produit: ${siteUrl}?productId=${productId}\n`;
             } else {
