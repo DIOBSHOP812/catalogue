@@ -706,7 +706,7 @@
         function checkSharedCart() {
             const urlParams = new URLSearchParams(window.location.search);
             const sharedCartId = urlParams.get('cartId');
-            
+
             if (sharedCartId) {
                 const sharedCart = localStorage.getItem('diobshop_shared_' + sharedCartId);
                 if (sharedCart) {
@@ -744,9 +744,9 @@
         function createProductCard(product, category) {
             const card = document.createElement('div');
             card.className = 'product-card';
-            
-            const whatsappButtonText = category === 'special' ? 'Commander sur WhatsApp' : 
-                                     category === 'adult' ? 'Commander sur WhatsApp' : 
+
+            const whatsappButtonText = category === 'special' ? 'Commander sur WhatsApp' :
+                                     category === 'adult' ? 'Commander sur WhatsApp' :
                                      'Passer à l\'achat sur WhatsApp';
 
             card.innerHTML = `
@@ -770,12 +770,12 @@
 
         // Format price with thousands separator
         function formatPrice(price) {
-            return price.toLocaleString('fr-FR');
+            return Number(price).toLocaleString('fr-FR');
         }
 
         // Find product by ID
         function findProduct(productId) {
-            const allProducts = [...products.available, ...products.special, ...products.adult];
+            const allProducts = [...products.available, ...products.specialOrder, ...products.adultBooks];
             return allProducts.find(p => p.id === productId);
         }
 
@@ -785,7 +785,7 @@
             if (!product) return;
 
             const existingItem = cart.find(item => item.id === productId);
-            
+
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -797,13 +797,13 @@
 
             saveCart();
             updateCartDisplay();
-            
+
             // Visual feedback
             const button = event.target;
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i> Ajouté !';
             button.style.background = '#4CAF50';
-            
+
             setTimeout(() => {
                 button.innerHTML = originalText;
                 button.style.background = '';
@@ -924,7 +924,7 @@
             }
 
             const shareUrl = window.location.origin + window.location.pathname + '?cartId=' + cartId;
-            
+
             if (navigator.share) {
                 navigator.share({
                     title: 'Mon Panier DIOBSHOP',
@@ -975,7 +975,7 @@
             if (availableItems.length > 0) {
                 message += `📦 *ARTICLES DISPONIBLES*\n`;
                 message += `(Livraison immédiate)\n\n`;
-                
+
                 availableItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
@@ -988,7 +988,7 @@
             if (specialItems.length > 0) {
                 message += `⏰ *COMMANDES SPÉCIALES*\n`;
                 message += `(Acompte 25% requis - Minimum 50,000 FCFA)\n\n`;
-                
+
                 specialItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
@@ -1002,7 +1002,7 @@
             if (adultItems.length > 0) {
                 message += `📚 *LIVRES NUMÉRIQUES ADULTES*\n`;
                 message += `(Livraison immédiate après paiement)\n\n`;
-                
+
                 adultItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
@@ -1014,7 +1014,7 @@
 
             const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             message += `💰 *TOTAL GÉNÉRAL: ${formatPrice(total)} FCFA*\n\n`;
-            
+
             if (specialItems.length > 0) {
                 const totalSpecial = specialItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 const acompteTotal = totalSpecial * 0.25;
