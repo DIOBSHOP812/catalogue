@@ -735,6 +735,10 @@
             container.innerHTML = '';
 
             productList.forEach(product => {
+                // Ajoute une ancre HTML pour chaque produit
+                const anchor = document.createElement('a');
+                anchor.id = product.id;
+                container.appendChild(anchor);
                 const productCard = createProductCard(product, category);
                 container.appendChild(productCard);
             });
@@ -824,6 +828,12 @@
 
         // Open cart modal
         function openCart() {
+            // Ajoute une ancre HTML pour le panier
+            if (!document.getElementById('panier-' + cartId)) {
+                const anchor = document.createElement('a');
+                anchor.id = 'panier-' + cartId;
+                document.body.appendChild(anchor);
+            }
             renderCartItems();
             document.getElementById('cartModal').style.display = 'block';
         }
@@ -969,67 +979,46 @@
             const specialItems = items.filter(item => item.category === 'special');
             const adultItems = items.filter(item => item.category === 'adult');
 
-            let message = `🛒 *COMMANDE DIOBSHOP*\n`;
-            message += `ID Panier: ${cartId}\n\n`;
+            let siteUrl = "https://diobshop812.github.io/catalogue/";
+            let message = `Nouvelle commande\n\n`;
 
             if (availableItems.length > 0) {
-                message += `📦 *ARTICLES DISPONIBLES*\n`;
-                message += `(Livraison immédiate)\n\n`;
-
+                message += `  Articles Disponibles\n`;
                 availableItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
-                    message += `  Quantité: ${item.quantity}\n`;
-                    message += `  Sous-total: ${formatPrice(item.price * item.quantity)} FCFA\n`;
-                    message += `  Image: ${item.image}\n\n`;
+                    message += `  Image: ${item.image}\n`;
+                    message += `  Voir le produit : ${siteUrl}#${item.id}\n\n`;
                 });
             }
 
             if (specialItems.length > 0) {
-                message += `⏰ *COMMANDES SPÉCIALES*\n`;
-                message += `(Acompte 25% requis - Minimum 50,000 FCFA)\n\n`;
-
+                message += `  Commandes Spéciales\n`;
                 specialItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
-                    message += `  Quantité: ${item.quantity}\n`;
-                    message += `  Sous-total: ${formatPrice(item.price * item.quantity)} FCFA\n`;
-                    message += `  Acompte requis: ${formatPrice((item.price * item.quantity) * 0.25)} FCFA\n`;
-                    message += `  Image: ${item.image}\n\n`;
+                    message += `  Acompte requis: ${formatPrice(item.price * 0.25)} FCFA\n`;
+                    message += `  Image: ${item.image}\n`;
+                    message += `  Voir le produit : ${siteUrl}#${item.id}\n\n`;
                 });
             }
 
             if (adultItems.length > 0) {
-                message += `📚 *LIVRES NUMÉRIQUES ADULTES*\n`;
-                message += `(Livraison immédiate après paiement)\n\n`;
-
+                message += `  Livres Adultes\n`;
                 adultItems.forEach(item => {
                     message += `• ${item.name}\n`;
                     message += `  Prix: ${formatPrice(item.price)} FCFA\n`;
-                    message += `  Quantité: ${item.quantity}\n`;
-                    message += `  Sous-total: ${formatPrice(item.price * item.quantity)} FCFA\n`;
-                    message += `  Image: ${item.image}\n\n`;
+                    message += `  Image: ${item.image}\n`;
+                    message += `  Voir le produit : ${siteUrl}#${item.id}\n\n`;
                 });
             }
 
             const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `💰 *TOTAL GÉNÉRAL: ${formatPrice(total)} FCFA*\n\n`;
+            message += `  Total: ${formatPrice(total)} FCFA\n\n`;
 
-            if (specialItems.length > 0) {
-                const totalSpecial = specialItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const acompteTotal = totalSpecial * 0.25;
-                message += `💳 *Acompte total requis: ${formatPrice(acompteTotal)} FCFA*\n\n`;
-            }
-
-            // Ajout du lien direct vers le panier ou le produit (URL publique)
-            let siteUrl = "https://diobshop812.github.io/catalogue/";
-            if (productId) {
-                message += `🔗 Lien vers le produit: ${siteUrl}?productId=${productId}\n`;
-            } else {
-                message += `🔗 Lien vers le panier: ${siteUrl}?cartId=${cartId}\n`;
-            }
-
-            message += `📞 Merci de confirmer cette commande et de nous indiquer vos préférences de livraison.`;
+            // Lien vers le panier complet
+            message += `Voir le panier complet : ${siteUrl}#panier-${cartId}\n`;
+            message += `Merci de confirmer votre commande !`;
 
             return message;
         }
